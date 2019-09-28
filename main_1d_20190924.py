@@ -1,5 +1,5 @@
 #author: Zhiqin Xu 许志钦
-#email: xuzhiqin@sjtu.edu
+#email: xuzhiqin@sjtu.edu.cn
 #2019-09-24
 # coding: utf-8
 '''
