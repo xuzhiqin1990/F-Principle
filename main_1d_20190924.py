@@ -244,7 +244,9 @@ with tf.variable_scope('Graph',reuse=tf.AUTO_REUSE) as scope:
 
 
 saver = tf.train.Saver() 
-sess=tf.Session()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth=True  
+sess = tf.Session(config=config)
 if R_variable['iscontinue']:
     saver.restore(sess, "%smodel/model.ckpt"%(FolderName))
 else:
