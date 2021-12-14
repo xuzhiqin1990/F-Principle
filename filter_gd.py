@@ -53,17 +53,17 @@ def gauss_filiter(f_orig, kernel):
 def get_freq_low_high(yy, kernel_dict):
     f_low = []
     f_high = []
-    diff_fil = []
+    # diff_fil = []
     for filter in range(len(kernel_dict)):
         kernel = kernel_dict[filter]
         f_new_norm = gauss_filiter(yy, kernel)
         f_low.append(f_new_norm)
-        tmp_diff = np.mean(np.square(yy - f_new_norm))
-        diff_fil.append(tmp_diff)
+        # tmp_diff = np.mean(np.square(yy - f_new_norm))
+        # diff_fil.append(tmp_diff)
         f_high_tmp = yy - f_new_norm
         f_high.append(f_high_tmp)
 
-    return f_low, f_high, diff_fil
+    return f_low, f_high  # , diff_fil
 
 
 def build_model(config):
@@ -107,7 +107,7 @@ def main():
 
     dist = compute_distance(train_images_align)
     kernel_dict = normal_kernel(dist, filter_dict)
-    f_low, f_high, diff_fil = get_freq_low_high(train_labels, kernel_dict)
+    f_low, f_high = get_freq_low_high(train_labels, kernel_dict)
 
     model = build_model(config)
     sgd = tf.keras.optimizers.SGD(
@@ -131,7 +131,7 @@ def main():
         # valacc.append(his.history['val_accuracy'])
         y_pred = model.predict(train_images, batch_size=config.batch_size)
 
-        f_train_low, f_train_high, diff_train_fil = get_freq_low_high(
+        f_train_low, f_train_high = get_freq_low_high(
             y_pred, kernel_dict)
         for i in range(len(filter_dict)):
             lowdiff[i].append(np.linalg.norm(
