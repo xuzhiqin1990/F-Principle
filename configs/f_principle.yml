@@ -1,0 +1,32 @@
+NAME: f_principle
+
+DATA:
+  START: -3.14
+  END: 3.14
+  TRAIN_SIZE: 10000
+  TEST_SIZE: 5000
+  BATCH_SIZE: 100
+
+MODEL:
+  NAME: "SimpleLinear"
+  IN_FEAT: 1
+  OUT_FEAT: 1
+  LAYERS:
+    - 100
+    - 200
+    - 100
+  ACT: ReLU
+  ISRES: False
+  ISASI: False
+
+TRAIN:
+  LR: 0.0001
+  LR_STEP: 10
+  LR_FACTOR: 0.5
+  EPOCHS: 1000
+  OPT: SGD
+
+RESULTS:
+  PRINT_FREQ: 10
+  EVAL_FREQ: 10
+  PLOT_HEAT: 5
